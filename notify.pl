@@ -14,13 +14,12 @@ $VERSION = "0.01";
     authors     => 'Luke Macken, Paul W. Frields',
     contact     => 'lewk@csh.rit.edu, stickster@gmail.com',
     name        => 'notify.pl',
-    description => 'Use libnotify to alert user to hilighted messages',
+    description => 'Use ruby-notify-my-android to alert user to hilighted messages',
     license     => 'GNU General Public License',
     url         => 'http://lewk.org/log/code/irssi-notify',
 );
 
-Irssi::settings_add_str('notify', 'notify_icon', 'gtk-dialog-info');
-Irssi::settings_add_str('notify', 'notify_time', '5000');
+Irssi::settings_add_str('notify', 'notify_nma_apikey', 'YOUR_API_KEY');
 
 sub sanitize {
   my ($text) = @_;
@@ -38,12 +37,10 @@ sub notify {
     $summary = sanitize($summary);
     $message = sanitize($message);
 
-    my $cmd = "EXEC - notify-send" .
-	" -i " . Irssi::settings_get_str('notify_icon') .
-	" -t " . Irssi::settings_get_str('notify_time') .
-	" -- '" . $summary . "'" .
-	" '" . $message . "'";
-
+    my $cmd = "EXEC - notify-my-android -k " . Irssi::settings_get_str('notify_nma_apikey') .
+      " -a Irssi" .
+      " -e '" . $summary . "'" .
+      " -d '" . $message . "'";
     $server->command($cmd);
 }
  
