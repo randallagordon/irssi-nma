@@ -14,7 +14,7 @@ $VERSION = "0.01";
     authors     => 'Luke Macken, Paul W. Frields',
     contact     => 'lewk@csh.rit.edu, stickster@gmail.com',
     name        => 'notify.pl',
-    description => 'Use ruby-notify-my-android to alert user to hilighted messages',
+    description => 'Use node-nma to alert user to hilighted messages',
     license     => 'GNU General Public License',
     url         => 'http://lewk.org/log/code/irssi-notify',
 );
@@ -37,10 +37,10 @@ sub notify {
     $summary = sanitize($summary);
     $message = sanitize($message);
 
-    my $cmd = "EXEC - notify-my-android -k " . Irssi::settings_get_str('notify_nma_apikey') .
-      " -a Irssi" .
-      " -e '" . $summary . "'" .
-      " -d '" . $message . "'";
+    my $cmd = "EXEC - nma " . Irssi::settings_get_str('notify_nma_apikey') .
+      " Irssi" .
+      " '" . $summary . "'" .
+      " '" . $message . "'";
     $server->command($cmd);
 }
  

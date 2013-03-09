@@ -1,12 +1,12 @@
-# irssi-ruby-notify-my-android #################################################
+# irssi-nma ####################################################################
 
 Modification of irssi-libnotify to send notifications via Notify My Android
 
 ## Installation ################################################################
 
-1) Install the gem:
+1) Install the node-nma package:
 
-    $ gem install ruby-notify-my-android
+    $ [sudo] npm install -g nma
 
 2) Set your key in Irssi:
 
