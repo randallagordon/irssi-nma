@@ -37,10 +37,10 @@ sub notify {
     $summary = sanitize($summary);
     $message = sanitize($message);
 
-    my $cmd = "EXEC - nma " . Irssi::settings_get_str('notify_nma_apikey') .
-      " Irssi" .
-      " '" . $summary . "'" .
-      " '" . $message . "'";
+    my $cmd = "EXEC - nma -k " . Irssi::settings_get_str('notify_nma_apikey') .
+      " -a Irssi" .
+      " -e '" . $summary . "'" .
+      " -d '" . $message . "'";
     $server->command($cmd);
 }
  
